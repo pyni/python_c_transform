@@ -18,6 +18,6 @@ tf.transformations.quaternion_from_euler(r,p,y)
 
 ...
 
-And i recommand you to read:
+And i recommend you to read:
 http://docs.ros.org/jade/api/tf/html/python/transformations.html#tf.transformations.euler_matrix
 

@@ -1,4 +1,4 @@
-# numpy_transform
+# python_transform
 transform among rotation matrix, euler angles and quaternion
 
 写程序经常遇到各种欧拉角，矩阵，四元数转化，这个包还有下面的网址也许可以帮到你
@@ -34,3 +34,24 @@ http://docs.ros.org/jade/api/tf/html/python/transformations.html#tf.transformati
 
 
 写的有点乱，也没指望谁能看懂，我看的懂就行
+
+
+# c_transform
+C++的变换大多以eigen为主：
+可参见：https://www.cc.gatech.edu/classes/AY2015/cs4496_spring/Eigen.html
+一些值得注意的用法，如：
+１）矩阵转四元数：
+Matrix3f mat;
+Quaternionf q(mat);
+或者：
+Quaternionf q;
+q = mat;
+
+２）四元数取值：q.x(),q.y()...
+3) 四元数转矩阵：
+Eigen::Matrix3f mat3 = Eigen::Quaternionf(W, X, Y, Z).toRotationMatrix();
+Eigen::Matrix4f mat4 = Eigen::Matrix4f::Identity();
+mat4.block(0,0,3,3) = mat3;
+
+
+

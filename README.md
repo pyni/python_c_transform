@@ -58,12 +58,10 @@ Eigen::Matrix4f mat4 = Eigen::Matrix4f::Identity();
 mat4.block(0,0,3,3) = mat3;
 4) RPY转矩阵：
 
-Eigen::AngleAxisd rollAngle(0, Eigen::Vector3d::UnitX());
-Eigen::AngleAxisd pitchAngle(0, Eigen::Vector3d::UnitY());
-Eigen::AngleAxisd yawAngle(0, Eigen::Vector3d::UnitZ());
-
-Eigen::Quaterniond q = yawAngle * pitchAngle * rollAngle;
-
+Eigen::AngleAxisf rollAngle(0, Eigen::Vector3f::UnitX());
+Eigen::AngleAxisf pitchAngle(0, Eigen::Vector3f::UnitY());
+Eigen::AngleAxisf yawAngle(0, Eigen::Vector3f::UnitZ()); 
+Eigen::Quaternionf  q = yawAngle * pitchAngle * rollAngle; 
 Eigen::Matrix3f mat3_humanpredefined = q.matrix();  
 transform_humanpredefined.block(0,0,3,3) = mat3_humanpredefined;
 

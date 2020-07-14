@@ -65,3 +65,6 @@ Eigen::Quaternionf  q = yawAngle * pitchAngle * rollAngle;
 Eigen::Matrix3f mat3_humanpredefined = q.matrix();  
 transform_humanpredefined.block(0,0,3,3) = mat3_humanpredefined;
 
+5) 两队点用SVD求R，T变换（这两队点变换前后要相互对应）：
+opttest.py
+

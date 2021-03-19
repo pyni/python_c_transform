@@ -1,4 +1,7 @@
 # python_transform
+
+1)基本变换：
+
 transform among rotation matrix, euler angles and quaternion
 
 写程序经常遇到各种欧拉角，矩阵，四元数转化，这个包还有下面的网址也许可以帮到你
@@ -34,6 +37,31 @@ http://docs.ros.org/jade/api/tf/html/python/transformations.html#tf.transformati
 
 
 写的有点乱，也没指望谁能看懂，我看的懂就行
+
+2)已知目标转换的平移和其的三个轴线(x,y,z)的方向向量，或两个轴线(x,y)的方向向量，求该转换相对于绝对坐标的变换（下面举了一个已知两个轴线方向的例子）：
+下面的程序视为，先移动，解决目标的平移问题，然后再旋转（但是是绕自己本身旋转）
+
+    new_transformationtrans = np.identity(4)
+    new_transformationtrans[0,3]=已知给定
+    new_transformationtrans[1,3]=已知给定
+    new_transformationtrans[2,3]=已知给定
+    
+    xaxis= 已知给定
+    yaxis= 已知给定
+    xaxis= xaxis/np.linalg.norm(xaxis)
+    yaxis=yaxis/np.linalg.norm(yaxis)
+    zaxis=np.cross(xaxis, yaxis)#叉乘求z方向
+
+    new_transformationrot= np.identity(4)
+    new_transformationrot[0:3,0]=xaxis
+    new_transformationrot[0:3,1]=yaxis
+    new_transformationrot[0:3,2]=zaxis#不确定是不是这个，感觉应该是
+
+    current_transformation=np.dot(new_transformationtrans,new_transformationrot) #相对于自身变换，所以是右乘
+
+
+
+
 
 
 # c_transform
